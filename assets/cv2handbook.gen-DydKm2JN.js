@@ -1,0 +1,366 @@
+const e=`<nav id="TOC">
+<ul>
+<li><a href="#references" id="toc-references"><span
+class="toc-section-number">1</span> References</a>
+<ul>
+<li><a href="#opencv-tutorials" id="toc-opencv-tutorials"><span
+class="toc-section-number">1.1</span> OpenCV Tutorials</a></li>
+</ul></li>
+<li><a href="#numpy" id="toc-numpy"><span
+class="toc-section-number">2</span> NumPy</a>
+<ul>
+<li><a href="#indexing" id="toc-indexing"><span
+class="toc-section-number">2.1</span> Indexing</a></li>
+<li><a href="#array-variables" id="toc-array-variables"><span
+class="toc-section-number">2.2</span> Array Variables</a></li>
+</ul></li>
+<li><a href="#io" id="toc-io"><span class="toc-section-number">3</span>
+IO</a></li>
+<li><a href="#arithmetic" id="toc-arithmetic"><span
+class="toc-section-number">4</span> Arithmetic</a>
+<ul>
+<li><a href="#addition" id="toc-addition"><span
+class="toc-section-number">4.1</span> Addition</a></li>
+<li><a href="#shape" id="toc-shape"><span
+class="toc-section-number">4.2</span> Shape</a></li>
+</ul></li>
+<li><a href="#bgr-formats" id="toc-bgr-formats"><span
+class="toc-section-number">5</span> BGR &amp; Formats</a></li>
+<li><a href="#basic-image-properties"
+id="toc-basic-image-properties"><span
+class="toc-section-number">6</span> Basic Image Properties</a>
+<ul>
+<li><a href="#brightness" id="toc-brightness"><span
+class="toc-section-number">6.1</span> Brightness</a></li>
+<li><a href="#contrast" id="toc-contrast"><span
+class="toc-section-number">6.2</span> Contrast</a></li>
+</ul></li>
+<li><a href="#template-matching" id="toc-template-matching"><span
+class="toc-section-number">7</span> Template Matching</a></li>
+<li><a href="#windows" id="toc-windows"><span
+class="toc-section-number">8</span> Windows</a></li>
+<li><a href="#contours" id="toc-contours"><span
+class="toc-section-number">9</span> Contours</a></li>
+<li><a href="#warp-image" id="toc-warp-image"><span
+class="toc-section-number">10</span> Warp Image</a></li>
+<li><a href="#threshold" id="toc-threshold"><span
+class="toc-section-number">11</span> Threshold</a>
+<ul>
+<li><a href="#basic" id="toc-basic"><span
+class="toc-section-number">11.1</span> Basic</a></li>
+<li><a href="#adaptive" id="toc-adaptive"><span
+class="toc-section-number">11.2</span> Adaptive</a></li>
+</ul></li>
+<li><a href="#smoothing" id="toc-smoothing"><span
+class="toc-section-number">12</span> Smoothing</a>
+<ul>
+<li><a href="#median-blur" id="toc-median-blur"><span
+class="toc-section-number">12.1</span> Median Blur</a></li>
+</ul></li>
+<li><a href="#histogram" id="toc-histogram"><span
+class="toc-section-number">13</span> Histogram</a>
+<ul>
+<li><a href="#basic-1" id="toc-basic-1"><span
+class="toc-section-number">13.1</span> Basic</a></li>
+<li><a href="#adaptive-1" id="toc-adaptive-1"><span
+class="toc-section-number">13.2</span> Adaptive</a></li>
+</ul></li>
+<li><a href="#installation" id="toc-installation"><span
+class="toc-section-number">14</span> Installation</a>
+<ul>
+<li><a href="#dependencies" id="toc-dependencies"><span
+class="toc-section-number">14.1</span> Dependencies</a>
+<ul>
+<li><a href="#required" id="toc-required"><span
+class="toc-section-number">14.1.1</span> Required</a></li>
+<li><a href="#optional" id="toc-optional"><span
+class="toc-section-number">14.1.2</span> Optional</a></li>
+</ul></li>
+<li><a href="#steps" id="toc-steps"><span
+class="toc-section-number">14.2</span> Steps</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 data-number="1" id="references"><span
+class="header-section-number">1</span> References</h1>
+<h2 data-number="1.1" id="opencv-tutorials"><span
+class="header-section-number">1.1</span> OpenCV Tutorials</h2>
+<p>All of the work below is based on the tutorials at the <a
+href="http://docs.opencv.org/master/doc/py_tutorials/py_tutorials.html">OpenCV
+Python Tutorial</a> .</p>
+<h1 data-number="2" id="numpy"><span
+class="header-section-number">2</span> NumPy</h1>
+<p>NumPy is a Python library made for really fast arrays. It’s used
+extensively in OpenCV.</p>
+<p>Here are some notes on using NumPy.</p>
+<h2 data-number="2.1" id="indexing"><span
+class="header-section-number">2.1</span> Indexing</h2>
+<p>It’s inefficient to get an item from the numpy array by indexing:
+<code>arr[10]</code>.</p>
+<p>Instead, use the numpy array methods: <code>item()</code> and
+<code>itemset()</code>.</p>
+<p>Use the old way of indexing for slices, i.e.
+<code>arr[:10, :10, :10]</code>.</p>
+<p>We can unpack arrays with <code>split()</code> but it’s slow. Use
+slicing, if possible.</p>
+<h2 data-number="2.2" id="array-variables"><span
+class="header-section-number">2.2</span> Array Variables</h2>
+<ul>
+<li><p><code>shape</code> describes its shape in n-dimensions.</p></li>
+<li><p><code>size</code> is the total number of items in an
+array.</p></li>
+<li><p><code>dtype</code> is the data type. Note that arrays must be
+homogeneous.</p></li>
+</ul>
+<h1 data-number="3" id="io"><span class="header-section-number">3</span>
+IO</h1>
+<p>We load images using the <code>imread</code> function. It takes in a
+filename and returns a numpy array.</p>
+<p>We write images using <code>imwrite</code>. It takes in a filename
+and a numpy array.</p>
+<h1 data-number="4" id="arithmetic"><span
+class="header-section-number">4</span> Arithmetic</h1>
+<h2 data-number="4.1" id="addition"><span
+class="header-section-number">4.1</span> Addition</h2>
+<p>We can add values to arrays. But remember that numpy arrays are a
+defined type.</p>
+<ul>
+<li><p><code>cv2.add()</code> will add two arrays but it puts a ceiling
+on the values from the data type.</p></li>
+<li><p><code>a + b</code> is using numpy. This will modulo the result
+with the ceiling for the data type.</p></li>
+</ul>
+<p>There is also <code>addWeighted()</code>. This takes in two arrays,
+and their relative weightings. And simply does: <span
+class="math inline">\\(result = (1-x)*img1 + x*img2\\)</span> The result
+appears to have transparency.</p>
+<p>There are also bitwise operations.</p>
+<h2 data-number="4.2" id="shape"><span
+class="header-section-number">4.2</span> Shape</h2>
+<p>This is annoying enough to get its own section.</p>
+<p>Numpy arrays have a shape property. <code>arr.shape</code> will
+return the dimensions of the array but they return rows, cols,
+z-dim.</p>
+<p>Remember that rows are basically y-values and cols are x-values. It
+actually gives <code>y, x, z</code> which is backwards compared to
+mostly everything.</p>
+<p>OpenCV, on the other hand, does use <code>cols, rows</code>. Remember
+to keep track of this annoying issue.</p>
+<h1 data-number="5" id="bgr-formats"><span
+class="header-section-number">5</span> BGR &amp; Formats</h1>
+<p>OpenCV does things in the BGR format. This means that the pixels are
+stored with blue first, then green, and finally red.</p>
+<p>Luckily, there is a function called <code>cvtColor</code> that allows
+you to easily convert from various formats to others.</p>
+<p>It takes in an image and a type as arguments. One very common
+argument is <code>COLOR_BGR2GRAY</code> which is used to convert BGR to
+grayscale.</p>
+<h1 data-number="6" id="basic-image-properties"><span
+class="header-section-number">6</span> Basic Image Properties</h1>
+<h2 data-number="6.1" id="brightness"><span
+class="header-section-number">6.1</span> Brightness</h2>
+<p>Brightness is a lot simpler than it sounds. It is actually almost
+like the average value of all the pixels.</p>
+<p>If you increase the value of all the pixels by using
+<code>numpy.add</code> or <code>cv2.add</code>, it will increase the
+brightness.</p>
+<h2 data-number="6.2" id="contrast"><span
+class="header-section-number">6.2</span> Contrast</h2>
+<p>Contrast ilike increasing brightness more for already bright
+pixels.</p>
+<p>We can do this by multiplying by <span class="math inline">\\(&gt;
+1\\)</span> or <span class="math inline">\\(&lt; 1\\)</span>. Multiplying
+by a value like 2 will increase all the bright pixels by a much larger
+margin than the darker ones.</p>
+<p>Use <code>cv2.multiply</code> or <code>numpy.multiply</code> to
+adjust contrast.</p>
+<h1 data-number="7" id="template-matching"><span
+class="header-section-number">7</span> Template Matching</h1>
+<p>The idea in template matching is to compare a small template to a
+larger image.</p>
+<p>The comparison is done with some math in the frequency domain.</p>
+<p>Template matching will identify areas that appear to be the same as
+the template.</p>
+<p>But there are a few problems with template matching:</p>
+<ul>
+<li><p>It is somewhat slow.</p></li>
+<li><p>It doesn’t work easily with varying sizes or rotations.</p></li>
+</ul>
+<p>It may be better to go with other methods.</p>
+<h1 data-number="8" id="windows"><span
+class="header-section-number">8</span> Windows</h1>
+<p>Windows are fairly easy to create. Use
+<code>imshow(window_name, image)</code> to display something. It will
+automatically create a window for you.</p>
+<p>You must use <code>waitKey</code> to get any output.
+<code>waitKey</code> just waits for key input and then returns that in
+hex. But there’s a small catch.</p>
+<p>The returned number is a little stupid and instead of returning
+something reasonable, it returns three bytes. So use an AND mask on it
+to just get the lower byte.</p>
+<h1 data-number="9" id="contours"><span
+class="header-section-number">9</span> Contours</h1>
+<p>Instead of using template matching, my pynotescan program uses
+contours.</p>
+<p>The idea of contours is just to identify a connected line. That
+really helps identify pages in the program.</p>
+<p>Use the
+<code>findContours(img, heirarchy_mode, extensive_mode)</code> function.
+<code>img</code> is just the image you want to find contours in.
+<code>heirarchy_mode</code> can be used to get all contours at different
+heirarchies, or just the top most one, or not put them in heirarchies at
+all. <code>extensive_mode</code> has two options
+<code>CHAIN_APPROX_NONE</code> and <code>CHAIN_APPROX_SIMPLE</code>.
+<code>_SIMPLE</code> will reduce long lines to just corners but
+<code>_NONE</code> will have everything.</p>
+<p>The <code>findContours</code> function returns three values: image,
+contours, heriarchy.</p>
+<h1 data-number="10" id="warp-image"><span
+class="header-section-number">10</span> Warp Image</h1>
+<p>We can warp images from their original dimensions to new
+dimensions.</p>
+<p>The <code>getPerspectiveTransform</code> and
+<code>warpPerspective</code> functions are used to warp an image.</p>
+<p>First pass in numpy arrays with float32 type into
+<code>getPerspectiveTransform(old_dims, new_dims)</code>. This returns a
+warper that is actually used to warp an image.</p>
+<p>This warper is then passed in to
+<code>warpPerspective(img, warper, size)</code>. The image is just the
+image to warp. The size is the width x height of the new_dims.</p>
+<h1 data-number="11" id="threshold"><span
+class="header-section-number">11</span> Threshold</h1>
+<p>It’s often very useful to apply thresholds to images. There are a few
+different types of thresholds to be aware of.</p>
+<h2 data-number="11.1" id="basic"><span
+class="header-section-number">11.1</span> Basic</h2>
+<p>The most basic type of threshold is using <code>cv2.threshold</code>
+which takes four parameters: image, threshold, maximum, mode.</p>
+<p>The way the function applies the threshold and maximum value depends
+on the mode. Check the documentation for modes.</p>
+<p>One basic mode is <code>THRESH_BINARY</code> which makes all pixels
+above thresh to the maximum value and all pixels below thresh to
+zero.</p>
+<p>Another useful mode used in pynotescan is <code>THRESH_TOZERO</code>.
+This makes everything below thesh zero but leaves everything above
+thresh as-is.</p>
+<h2 data-number="11.2" id="adaptive"><span
+class="header-section-number">11.2</span> Adaptive</h2>
+<p>Adaptive threshold is used when you want the threshold to be applied
+to a local area instead of applying it to the entire image.</p>
+<p>The idea is that being very bright in one area but not that bright in
+another area will not have as much of an effect as simple
+thresholding.</p>
+<p>We use the function <code>adaptiveThreshold</code> to do adaptive
+thresholding. The function takes many arguments:</p>
+<pre><code>adaptiveThreshold(img, max_val, mode, type, k_sz, const)</code></pre>
+<div class="center">
+
+</div>
+<p>The img, max_val are self-explanatory. The mode can be either
+<code>ADAPTIVE_THRESH_MEAN_C</code> or
+<code>ADAPTIVE_THRESH_GAUSSIAN_C</code>. Try both to see the
+differences. The type can be either <code>THRESH_BINARY</code> or
+<code>THRESH_BINARY_INV</code>. The k_sz is the kernel size used and the
+const is just some constant subtracted from the result.</p>
+<p>Look to the documentation for details on each parameter.</p>
+<h1 data-number="12" id="smoothing"><span
+class="header-section-number">12</span> Smoothing</h1>
+<p>Smoothing is very useful in removing noise from images. In
+pynotescan, most of the noise came from bad pictures and texture of
+backgrounds. Here were a few options to remove that noise.</p>
+<h2 data-number="12.1" id="median-blur"><span
+class="header-section-number">12.1</span> Median Blur</h2>
+<p>This blurring ended up being incredibly useful in removing texture,
+like carpet or cloth, from images.</p>
+<p>Pass in an image and a kernel size to the function
+<code>medianBlur(img, kernel_sz)</code>. A larger kernel size removes
+more detail.</p>
+<h1 data-number="13" id="histogram"><span
+class="header-section-number">13</span> Histogram</h1>
+<p>We can equalize images in many ways. Here are two of them.</p>
+<h2 data-number="13.1" id="basic-1"><span
+class="header-section-number">13.1</span> Basic</h2>
+<p>We can use the <code>equalizeHist(img)</code> function to equalize
+the histogram of an image.</p>
+<p>This is not smart equalization. It just distributes the pixels over
+different intensities.</p>
+<h2 data-number="13.2" id="adaptive-1"><span
+class="header-section-number">13.2</span> Adaptive</h2>
+<p>We can use something called CLAHE to have adaptive equalization. Like
+adaptive thresholding, CLAHE works on small sections of the image
+instead of the entire image at once.</p>
+<p>Use the function <code>createCLAHE</code> to create and return a
+clahe object. It has no mandatory arguments but you can add
+<code>clipLimit</code> and <code>tileGridSize</code> to control
+clipLimit? and just the size of the area CLAHE will use.</p>
+<p>To actually apply it to an image, use the <code>apply</code> method
+from the object created with <code>createCLAHE</code>.
+<code>apply</code> just takes an image as an argument and returns a new
+image.</p>
+<h1 data-number="14" id="installation"><span
+class="header-section-number">14</span> Installation</h1>
+<h2 data-number="14.1" id="dependencies"><span
+class="header-section-number">14.1</span> Dependencies</h2>
+<p>Install the following dependencies:</p>
+<h3 data-number="14.1.1" id="required"><span
+class="header-section-number">14.1.1</span> Required</h3>
+<ul>
+<li><p><code>build-essential</code></p></li>
+<li><p><code>cmake</code></p></li>
+<li><p><code>git</code></p></li>
+<li><p><code>libgtk2.0-dev</code></p></li>
+<li><p><code>pkg-config</code></p></li>
+<li><p><code>libavcodec-dev</code></p></li>
+<li><p><code>libavformat-dev</code></p></li>
+<li><p><code>libswscale-dev</code></p></li>
+</ul>
+<h3 data-number="14.1.2" id="optional"><span
+class="header-section-number">14.1.2</span> Optional</h3>
+<ul>
+<li><p><code>python3-dev</code></p></li>
+<li><p><code>python3-numpy</code></p></li>
+</ul>
+<p>The list of dependencies can be found <a
+href="http://docs.opencv.org/master/doc/tutorials/introduction/linux_install/linux_install.html#linux-installation">here</a>.</p>
+<h2 data-number="14.2" id="steps"><span
+class="header-section-number">14.2</span> Steps</h2>
+<ul>
+<li><p>CMake is some useful tool to create and configure a bunch of
+makefiles.</p></li>
+<li><p>Use the following flags, or similar ones, on the cmake in
+OpenCV:</p></li>
+</ul>
+<pre><code>cmake
+-D WITH_IPP=OFF
+-D PYTHON_EXECUTABLE=/usr/bin/python3.3
+-D PYTHON_LIBRARIES=/usr/lib/python3.3/
+-D PYTHON_INCLUDE_DIRS=/usr/include/python3.3m/
+-D PYTHON_PACKAGES_PATH=/usr/lib/python3.3/</code></pre>
+<div class="center">
+<p>OpenCV Flags</p>
+</div>
+<ul>
+<li><p>Also note that <code>PYTHON_INCLUDE_DIRS</code> has
+<code>python3.3m</code>. I’ve no idea why but that works and
+<code>python3.3</code> doesn’t.</p></li>
+<li><p>But if have Python3, it may not work. In that case, do the
+following:</p>
+<ul>
+<li><p>Install <code>python3-dev</code>.</p></li>
+<li><p>Run <code>python3.3-config --includes</code>.</p></li>
+<li><p>That will give you a few directories, check them for
+<code>pyconfig.h</code> to the directory in the cmake above.</p></li>
+</ul></li>
+<li><p>Then, <code>make</code>.</p></li>
+<li><p>Finally, <code>sudo make install</code>.</p></li>
+<li><p>The last line written will have something to do with cascading
+trains.</p></li>
+<li><p>It could also give an error of
+<code>Failed to load OpenCL runtime</code>.</p></li>
+<li><p>In that case, install <code>ocl-icd-opencl-dev</code>.</p></li>
+<li><p>It’s also possible that your camera won’t change resolutions. In
+that case, install the <code>libv4l-dev</code> package. Re-make the
+source, re-install everything. And then restart. It doesn’t seem to take
+effect until restarting.</p></li>
+</ul>
+`;export{e as default};

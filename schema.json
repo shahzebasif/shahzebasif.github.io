@@ -1,0 +1,264 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/IRecipeFile",
+  "definitions": {
+    "IRecipeFile": {
+      "type": "object",
+      "properties": {
+        "recipes": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Recipe"
+          }
+        }
+      },
+      "required": ["recipes"],
+      "additionalProperties": false
+    },
+    "Recipe": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RecipeTags"
+          }
+        },
+        "category": {
+          "$ref": "#/definitions/RecipeCategory"
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "grade": {
+          "$ref": "#/definitions/RecipeGrade"
+        },
+        "variations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Variation"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "title",
+        "created",
+        "updated",
+        "tags",
+        "category",
+        "authors",
+        "grade",
+        "variations"
+      ],
+      "additionalProperties": false
+    },
+    "RecipeTags": {
+      "type": "string",
+      "enum": [
+        "airfryer",
+        "corn",
+        "dips",
+        "egg",
+        "equipment",
+        "fruit",
+        "gluten-free",
+        "heavy",
+        "late-night",
+        "lentils",
+        "mushrooms",
+        "not-italian",
+        "not-middle-eastern",
+        "oats",
+        "pakistani",
+        "potato",
+        "rice",
+        "salty",
+        "spices",
+        "tomato",
+        "vegetables"
+      ]
+    },
+    "RecipeCategory": {
+      "type": "string",
+      "enum": ["sides", "sweet", "breads", "basics", "meals", "ideas", "technique", "failures"]
+    },
+    "RecipeGrade": {
+      "type": "string",
+      "enum": ["great", "okay", "inprogress", "failure"]
+    },
+    "Variation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Ingredient"
+              },
+              {
+                "$ref": "#/definitions/Direction"
+              }
+            ]
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "hidden": {
+          "type": "boolean"
+        }
+      },
+      "required": ["name", "steps"],
+      "additionalProperties": false
+    },
+    "Ingredient": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "amount": {
+          "$ref": "#/definitions/IngredientQuantity"
+        },
+        "link": {
+          "type": "boolean"
+        },
+        "optional": {
+          "type": "boolean"
+        },
+        "substeps": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Ingredient"
+              },
+              {
+                "$ref": "#/definitions/Direction"
+              }
+            ]
+          }
+        }
+      },
+      "required": ["name", "amount"],
+      "additionalProperties": false
+    },
+    "IngredientQuantity": {
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/definitions/Fraction"
+            }
+          ]
+        },
+        "unit": {
+          "$ref": "#/definitions/IngredientUnit"
+        }
+      },
+      "required": ["quantity"],
+      "additionalProperties": false
+    },
+    "Fraction": {
+      "type": "object",
+      "properties": {
+        "whole": {
+          "type": "number"
+        },
+        "numerator": {
+          "type": "number"
+        },
+        "denominator": {
+          "type": "number"
+        }
+      },
+      "required": ["whole", "numerator", "denominator"],
+      "additionalProperties": false
+    },
+    "IngredientUnit": {
+      "type": "string",
+      "enum": ["g", "ml", "lb", "tsp", "tbsp", "cup", "oz"]
+    },
+    "Direction": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "link": {
+          "type": "boolean"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "interval": {
+          "type": "number"
+        },
+        "temperature": {
+          "$ref": "#/definitions/TemperatureDegrees"
+        },
+        "substeps": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Ingredient"
+              },
+              {
+                "$ref": "#/definitions/Direction"
+              }
+            ]
+          }
+        }
+      },
+      "required": ["action"],
+      "additionalProperties": false
+    },
+    "TemperatureDegrees": {
+      "type": "object",
+      "properties": {
+        "degrees": {
+          "type": "number"
+        },
+        "unit": {
+          "$ref": "#/definitions/TemperatureUnit"
+        }
+      },
+      "required": ["degrees", "unit"],
+      "additionalProperties": false
+    },
+    "TemperatureUnit": {
+      "type": "string",
+      "enum": ["°C", "°F", "on stove"]
+    }
+  }
+}

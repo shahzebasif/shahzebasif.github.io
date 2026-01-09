@@ -1,0 +1,100 @@
+const n=`<nav id="TOC">
+<ul>
+<li><a href="#commands" id="toc-commands"><span
+class="toc-section-number">1</span> Commands</a></li>
+</ul>
+</nav>
+<h1 data-number="1" id="commands"><span
+class="header-section-number">1</span> Commands</h1>
+<p><code>git init</code></p>
+<ul>
+<li><p>Initialize a folder.</p></li>
+</ul>
+<p><code>git remote add origin https://github.com/shahzebasif/tabletop.git</code></p>
+<ul>
+<li><p>Add remote location to upload to.</p></li>
+</ul>
+<p><code>git status</code></p>
+<ul>
+<li><p>Check the status of git folder.</p></li>
+</ul>
+<p><code>git add &lt;filename&gt;</code></p>
+<ul>
+<li><p>Add filename to be commited.</p></li>
+</ul>
+<p><code>git commit -&lt;x&gt; "Adding a README"</code></p>
+<ul>
+<li><p>m: message</p></li>
+<li><p>a: all changes</p></li>
+<li><p>Commits the change but might prompt for author.</p></li>
+</ul>
+<p><code>git log</code></p>
+<ul>
+<li><p>Gives the log of all commits and an ID.</p></li>
+</ul>
+<p><code>./.gitignore</code></p>
+<ul>
+<li><p>File that has names of files to ignore.</p></li>
+</ul>
+<p><code>git push origin master</code></p>
+<ul>
+<li><p>Push the commits online on branch <code>master</code>.</p></li>
+</ul>
+<p><code>git pull origin master</code></p>
+<ul>
+<li><p>Gets latest updates from remote.</p></li>
+</ul>
+<p><code>git branch</code></p>
+<ul>
+<li><p>Lists all the branches.</p></li>
+</ul>
+<p><code>git branch &lt;name&gt;</code></p>
+<ul>
+<li><p>Creates branch with name.</p></li>
+</ul>
+<p><code>git checkout &lt;name&gt;</code></p>
+<ul>
+<li><p>Switches to branch with name.</p></li>
+</ul>
+<p><code>git merge &lt;branchname&gt;</code></p>
+<ul>
+<li><p>Gets the content from branchname and merges it with the current
+branch.</p></li>
+</ul>
+<p><code>git branch -d &lt;branchname&gt;</code></p>
+<ul>
+<li><p>Delete branch locally.</p></li>
+</ul>
+<p><code>git push origin --delete &lt;branchname&gt;</code></p>
+<ul>
+<li><p>Deletes the branch on remote.</p></li>
+</ul>
+<p><code>git push --force</code></p>
+<ul>
+<li><p>Overwrites everything on remote with current git repo.</p></li>
+</ul>
+<p><code>git clone https://github.com/shahzebasif/&lt;repo&gt;.git</code></p>
+<ul>
+<li><p>Clones repo.</p></li>
+</ul>
+<p><code>git config --global user.email "email address"</code></p>
+<ul>
+<li><p>Sets the authors name.</p></li>
+</ul>
+<p><code>git fetch -all &amp;&amp; git reset --hard origin/master</code></p>
+<ul>
+<li><p>Makes the local directory identical to the online
+version.</p></li>
+</ul>
+<p><code>git checkout --track origin/&lt;branch&gt;</code></p>
+<ul>
+<li><p>Creates a new branch with the remote branch.</p></li>
+</ul>
+<p><code>git reset --soft HEAD~1</code></p>
+<ul>
+<li><p>Undo last commit without dropping the content.</p></li>
+</ul>
+<p>Note: If you push and there are conflicts, it won’t push. It’ll ask
+you to merge them. You should pull the online version, resolve the
+changes, and then push the result.</p>
+`;export{n as default};
